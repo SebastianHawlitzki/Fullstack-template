@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +21,9 @@ public class MovieService {
 
 
     public Movie addMovie(Movie movie) {
+        String uuid = UUID.randomUUID().toString();
+        Movie x = new Movie(movie.getId(), movie.getTitle(), movie.getPosterUrl(), movie.getYear());
+        movie.setId(uuid);
         return movieRepo.addMovie(movie);
     }
 }
